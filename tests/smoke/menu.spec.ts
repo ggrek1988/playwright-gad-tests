@@ -1,6 +1,6 @@
+import { MainMenuComponent } from '../../src/components/main-manu.component';
 import { ArticlesPage } from '../../src/pages/articles.page';
 import { CommentsPage } from '../../src/pages/comments.page';
-import { MainMenuComponent } from '../../src/pages/components/main-manu.component';
 import { HomePage } from '../../src/pages/home.pages';
 import { expect, test } from '@playwright/test';
 
