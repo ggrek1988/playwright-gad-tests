@@ -13,7 +13,8 @@
     "show-report": "npx playwright show-report",
     "test:grep": "npx playwright test --grep \"@GAD-R01-01|@GAD-R01-02\"",
     "test:grep:linux": "npx playwright test --grep \"@GAD-R01-01^|@GAD-R01-02\"",
-    "test:grep:powershell": "npx playwright test --grep --% \"@GAD-R01-01^|@GAD-R01-02\""
+    "test:grep:powershell": "npx playwright test --grep --% \"@GAD-R01-01^|@GAD-R01-02\"",
+    "test:grep:repeat": "npx playwright test --grep  \"@GAD-R01-01\" --repeat-each=5"
   },
   "keywords": [],
   "author": "",
