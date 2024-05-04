@@ -40,7 +40,10 @@ test.describe('Verify regoster', () => {
 
     // Assert
     const welcomePage = new WelcomePage(page);
-    await loginPage.login(registerUser.userEmail, registerUser.userPassword);
+    await loginPage.loginNew({
+      userEmail: registerUser.userEmail,
+      userPassword: registerUser.userPassword,
+    });
     const title = await welcomePage.title();
     expect(title).toContain('Welcome');
   });
