@@ -1,6 +1,6 @@
-import { LoginPage } from '../../src/pages/login.page';
-import { WelcomePage } from '../../src/pages/welcome.page';
-import { testUser1 } from '../../src/test-data/user.data';
+import { LoginPage } from '../src/pages/login.page';
+import { WelcomePage } from '../src/pages/welcome.page';
+import { testUser1 } from '../src/test-data/user.data';
 import { expect, test } from '@playwright/test';
 
 test.describe('Verify login', () => {
@@ -37,4 +37,6 @@ test.describe('Verify login', () => {
       .toHaveText('Invalid username or password');
     expect.soft(title).toContain('Login');
   });
+
+  
 });
