@@ -1,3 +1,4 @@
+import { randomUserData } from '../src/factories/user.factory';
 import { RegisterUser } from '../src/models/user.model';
 import { LoginPage } from '../src/pages/login.page';
 import { RegisterPage } from '../src/pages/register.page';
@@ -11,24 +12,12 @@ test.describe('Verify regoster', () => {
     page,
   }) => {
     // Arrange
-
-    // zmienna bazująca na interfejsie w user.model.ts
-    const registerUser: RegisterUser = {
-      userFirstName: faker.person.firstName().replace(/[^A-Za-z]/g, ''),
-      userLastName: faker.person.lastName().replace(/[^A-Za-z]/g, ''),
-      userEmail: '',
-      userPassword: faker.internet.password(),
-    };
-
-    registerUser.userEmail = faker.internet.email({
-      firstName: registerUser.userFirstName,
-      lastName: registerUser.userLastName,
-    });
+    const registerUserData = randomUserData();
 
     // Act
     const registerPage = new RegisterPage(page);
     await registerPage.goto();
-    await registerPage.register(registerUser);
+    await registerPage.register(registerUserData);
 
     // Assert
     const expectedAlertPopupText = 'User created';
@@ -41,10 +30,49 @@ test.describe('Verify regoster', () => {
     // Assert
     const welcomePage = new WelcomePage(page);
     await loginPage.loginNew({
-      userEmail: registerUser.userEmail,
-      userPassword: registerUser.userPassword,
+      userEmail: registerUserData.userEmail,
+      userPassword: registerUserData.userPassword,
     });
     const title = await welcomePage.title();
     expect(title).toContain('Welcome');
+  });
+
+  test('not register with incorrect data - non valid email @GAD_R03_04', async ({
+    page,
+  }) => {
+    // Arrange
+    const registerUserData = randomUserData();
+    registerUserData.userEmail = '#@1234';
+    // Act
+    const registerPage = new RegisterPage(page);
+    await registerPage.goto();
+    await registerPage.register(registerUserData);
+
+    // Assert
+    const expectedErrorText = 'Please provide a valid email address';
+    await expect(registerPage.octavalidateEmailError).toHaveText(
+      expectedErrorText,
+    );
+  });
+
+  test('not register with incorrect data - email not provided @GAD_R03_04', async ({
+    page,
+  }) => {
+    // Arrange
+    const registerUserData = randomUserData();
+    const registerPage = new RegisterPage(page);
+    registerPage.userFirstNameInput.fill(registerUserData.userFirstName);
+    registerPage.userLastNameInput.fill(registerUserData.userLastName);
+    registerPage.userPasswordInput.fill(registerUserData.userPassword);
+    // Act
+
+    await registerPage.goto();
+    await registerPage.registerButton.click();
+
+    // Assert
+    const expectedErrorText = 'This field is required';
+    await expect(registerPage.octavalidateEmailError).toHaveText(
+      expectedErrorText,
+    );
   });
 });
