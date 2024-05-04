@@ -2,6 +2,7 @@ import { LoginPage } from '../src/pages/login.page';
 import { RegisterPage } from '../src/pages/register.page';
 import { WelcomePage } from '../src/pages/welcome.page';
 import { testUser1 } from '../src/test-data/user.data';
+import { faker } from '@faker-js/faker';
 import { expect, test } from '@playwright/test';
 
 test.describe('Verify regoster', () => {
@@ -9,10 +10,13 @@ test.describe('Verify regoster', () => {
     page,
   }) => {
     // Arrange
-    const userFirstName = 'Janina';
-    const userLastName = 'Nowak';
-    const userEmail = `jntest${new Date().getTime()}@test.test1`;
-    const userPassword = 'testtest234';
+    const userFirstName = faker.person.firstName();
+    const userLastName = faker.person.lastName();
+    const userEmail = faker.internet.email({
+      firstName: userFirstName,
+      lastName: userLastName,
+    });
+    const userPassword = faker.internet.password();
 
     // Act
     const registerPage = new RegisterPage(page);
