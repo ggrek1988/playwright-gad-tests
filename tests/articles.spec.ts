@@ -26,7 +26,7 @@ test.describe('Verify articlesn', () => {
   });
 
  
-  test('rejest creating article without title @GAD_R04_01', async () => {
+  test('rejest creating article without title @GAD-R04-01', async () => {
     // Arrange
 
     const expectedErrorMessage = 'Article was not created';
@@ -42,7 +42,7 @@ test.describe('Verify articlesn', () => {
       .toHaveText(expectedErrorMessage);
   });
 
-  test('rejest creating article  without body @GAD_R04_01', async () => {
+  test('rejest creating article  without body @GAD-R04-01', async () => {
     // Arrange
 
     const expectedErrorMessage = 'Article was not created';
@@ -58,7 +58,7 @@ test.describe('Verify articlesn', () => {
       .toHaveText(expectedErrorMessage);
   });
 
-  test('rejest creating article without title exceeding 128 signs @GAD_R04_02', async () => {
+  test('rejest creating article without title exceeding 128 signs @GAD-R04-02', async () => {
     // Arrange
 
     const expectedErrorMessage = 'Article was not created';
@@ -73,7 +73,7 @@ test.describe('Verify articlesn', () => {
       .toHaveText(expectedErrorMessage);
   });
 
-  test('create article without title with 128 signs @GAD_R04_02', async ({
+  test('create article without title with 128 signs @GAD-R04-02', async ({
     page,
   }) => {
     // Arrange

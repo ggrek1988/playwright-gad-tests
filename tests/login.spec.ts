@@ -5,7 +5,7 @@ import { testUser1 } from '../src/test-data/user.data';
 import { expect, test } from '@playwright/test';
 
 test.describe('Verify login', () => {
-  test('login with correct credentials @GAD_R02_01', async ({ page }) => {
+  test('login with correct credentials @GAD-R02-01', async ({ page }) => {
     // Arrange
     // implementacja obiektu który implementuje interfejs
     // const loginUserData: LoginUser = {
@@ -24,7 +24,7 @@ test.describe('Verify login', () => {
     expect(title).toContain('Welcome');
   });
 
-  test('rejest with incorrect password @GAD_R02_01', async ({ page }) => {
+  test('rejest with incorrect password @GAD-R02-01', async ({ page }) => {
     // Arrange
     const loginUserData: LoginUser = {
       userEmail: testUser1.userEmail,

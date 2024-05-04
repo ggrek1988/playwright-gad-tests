@@ -25,7 +25,7 @@ test.describe('Create, verify and delete article', () => {
     await loginPage.loginNew(testUser1);
     await articlesPage.goto();
   });
-  test('create new articles @GAD_R04_01', async () => {
+  test('create new articles @GAD-R04-01', async () => {
     // Arrange
     articleData = randomNewArticle();
 
@@ -41,7 +41,7 @@ test.describe('Create, verify and delete article', () => {
       .toHaveText(articleData.body, { useInnerText: true });
   });
 
-  test('user can access singe article @GAD_R04_03', async () => {
+  test('user can access singe article @GAD-R04-03', async () => {
     //Act
     await articlesPage.goToArticle(articleData.title);
 
@@ -52,7 +52,7 @@ test.describe('Create, verify and delete article', () => {
       .toHaveText(articleData.body, { useInnerText: true });
   });
 
-  test('user can delete his article @GAD_R04_04', async () => {
+  test('user can delete his article @GAD-R04-04', async () => {
     //Arrange
     await articlesPage.goToArticle(articleData.title);
     //Act
