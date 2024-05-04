@@ -8,11 +8,20 @@ export class ArticlePage extends BasePage {
 
   articleTittle = this.page.getByTestId('article-title');
   articleBody = this.page.getByTestId('article-body');
+  deleteIcon = this.page.getByTestId('delete');
+  
 
   constructor(page: Page) {
     super(page);
   }
 
-  
+  async deleteArticle(): Promise<void> {
+    this.page.on('dialog', async (dialog) => {
+      console.log('dialog is on!');
+      await dialog.accept();
+    });
+
+    this.deleteIcon.click();
+  }
 
 }
