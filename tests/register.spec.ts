@@ -1,13 +1,10 @@
 import { randomUserData } from '../src/factories/user.factory';
-import { RegisterUser } from '../src/models/user.model';
 import { LoginPage } from '../src/pages/login.page';
 import { RegisterPage } from '../src/pages/register.page';
 import { WelcomePage } from '../src/pages/welcome.page';
-import { testUser1 } from '../src/test-data/user.data';
-import { faker } from '@faker-js/faker/locale/pl';
 import { expect, test } from '@playwright/test';
 
-test.describe('Verify regoster', () => {
+test.describe('Verify register', () => {
   test('register with correct data and login @GAD_R03_01 @GAD_R03_02 @GAD_R03_03', async ({
     page,
   }) => {

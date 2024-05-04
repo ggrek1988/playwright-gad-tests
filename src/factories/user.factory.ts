@@ -1,5 +1,5 @@
 import { RegisterUser } from '../models/user.model';
-import { faker } from '@faker-js/faker';
+import { faker } from '@faker-js/faker/locale/en';
 
 export function randomUserData(): RegisterUser {
   // zmienna bazująca na interfejsie w user.model.ts
