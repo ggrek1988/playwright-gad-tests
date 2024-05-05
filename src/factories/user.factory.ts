@@ -1,9 +1,9 @@
-import { RegisterUser } from '../models/user.model';
+import { RegisterUserModal } from '../models/user.model';
 import { faker } from '@faker-js/faker/locale/en';
 
-export function randomUserData(): RegisterUser {
+export function randomUserData(): RegisterUserModal {
   // zmienna bazująca na interfejsie w user.model.ts
-  const registerUserData: RegisterUser = {
+  const registerUserData: RegisterUserModal = {
     userFirstName: faker.person.firstName().replace(/[^A-Za-z]/g, ''),
     userLastName: faker.person.lastName().replace(/[^A-Za-z]/g, ''),
     userEmail: '',

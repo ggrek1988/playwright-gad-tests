@@ -1,4 +1,4 @@
-import { LoginUser } from '../models/user.model';
+import { LoginUserModal } from '../models/user.model';
 import { BasePage } from './base.page';
 import { Page } from '@playwright/test';
 
@@ -16,7 +16,7 @@ export class LoginPage extends BasePage {
   }
 
   // zadeklarowanie w parametrze funckji interfejsów
-  async loginNew(loginUser: LoginUser): Promise<void> {
+  async loginNew(loginUser: LoginUserModal): Promise<void> {
     await this.userEmailInput.fill(loginUser.userEmail);
     await this.userPasswordInput.fill(loginUser.userPassword);
     await this.LogInButton.click();
