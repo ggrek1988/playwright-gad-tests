@@ -1,4 +1,4 @@
-import { randomUserData } from '../src/factories/user.factory';
+import { prepareRandomUser } from '../src/factories/user.factory';
 import { RegisterUserModal } from '../src/models/user.model';
 import { LoginPage } from '../src/pages/login.page';
 import { RegisterPage } from '../src/pages/register.page';
@@ -11,7 +11,7 @@ test.describe('Verify register', () => {
 
   test.beforeEach(async ({ page }) => {
     registerPage = new RegisterPage(page);
-    registerUserData = randomUserData();
+    registerUserData = prepareRandomUser();
     await registerPage.goto();
   });
 
@@ -20,6 +20,8 @@ test.describe('Verify register', () => {
   }) => {
     // Arrange
     const expectedAlertPopupText = 'User created';
+    const expectedLoginTitle = 'Login';
+    const expectedWelcomeTitle = 'Welcome';
 
     const loginPage = new LoginPage(page);
     const welcomePage = new WelcomePage(page);
@@ -30,16 +32,16 @@ test.describe('Verify register', () => {
     expect(registerPage.alertPopUp).toHaveText(expectedAlertPopupText);
 
     await loginPage.waitForPageToLoadUrl();
-    const titleLogin = await loginPage.title();
-    expect(titleLogin).toContain('Login');
+    const titleLogin = await loginPage.getTitle();
+    expect(titleLogin).toContain(expectedLoginTitle);
 
     // Assert test login
     await loginPage.loginNew({
       userEmail: registerUserData.userEmail,
       userPassword: registerUserData.userPassword,
     });
-    const title = await welcomePage.title();
-    expect(title).toContain('Welcome');
+    const title = await welcomePage.getTitle();
+    expect(title).toContain(expectedWelcomeTitle);
   });
 
   test('not register with incorrect data - non valid email @GAD-R03-04', async () => {

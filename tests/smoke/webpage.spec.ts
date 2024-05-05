@@ -6,33 +6,38 @@ import { expect, test } from '@playwright/test';
 test.describe('Verify service main pages', () => {
   test('home page title @GAD-R01-01', async ({ page }) => {
     // Arrange
+    const expectedGadTitle = 'GAD';
     const homePage = new HomePage(page);
     // Act
     await homePage.goto();
-    const title = await homePage.title();
+    const title = await homePage.getTitle();
     // Assert
-    expect(title).toContain('GAD');
+    expect(title).toContain(expectedGadTitle);
   });
 
   test('articles page title @GAD-R01-02', async ({ page }) => {
     // Arrange
+    const expectedArticlesTitle = 'Articles';
+
     const articlesPage = new ArticlesPage(page);
     // Act
     await articlesPage.goto();
-    const title = await articlesPage.title();
+    const title = await articlesPage.getTitle();
     // Assert
-    expect(title).toContain('Articles');
+    expect(title).toContain(expectedArticlesTitle);
   });
 
   test('comments page title @GAD-R01-02', async ({ page }) => {
     // Arrange
+    const expectedCommentsTitle = 'Comments';
+
     const commentsPage = new CommentsPage(page);
     // Act
     await commentsPage.goto();
-    const title = await commentsPage.title();
+    const title = await commentsPage.getTitle();
 
     // Assert
-    expect(title).toContain('Comments');
+    expect(title).toContain(expectedCommentsTitle);
   });
 
   test('home page title simple', async ({ page }) => {
