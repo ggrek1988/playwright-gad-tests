@@ -46,13 +46,13 @@ test.describe('Verify menu main buttons', () => {
 
     const articlesPage = new ArticlesPage(page);
     const homePage = new HomePage(page);
+
     // Act
     await articlesPage.goto();
     await articlesPage.mainMenu.homePage.click();
     const title = await homePage.getTitle();
 
     // Assert
-
     expect(title).toContain(expectedGadTitle);
   });
 });

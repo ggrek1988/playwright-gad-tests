@@ -26,12 +26,12 @@ test.describe('Verify login', () => {
     // Arrange
     const expectedLoginTitle = 'Login';
 
+    const loginPage = new LoginPage(page);
     const loginUserData: LoginUserModal = {
       userEmail: testUser1.userEmail,
       userPassword: 'test2',
     };
-    const loginPage = new LoginPage(page);
-
+    
     // Act
     await loginPage.goto();
     await loginPage.loginNew(loginUserData);
