@@ -1,11 +1,11 @@
-import { prepareRandomNewArticle } from '../src/factories/article.factory';
-import { AddArticleModel } from '../src/models/articles.model';
-import { ArticlePage } from '../src/pages/article.page';
-import { ArticlesPage } from '../src/pages/articles.page';
-import { LoginPage } from '../src/pages/login.page';
-import { WelcomePage } from '../src/pages/welcome.page';
-import { testUser1 } from '../src/test-data/user.data';
-import { AddArticleView } from '../src/views/add-article.views';
+import { prepareRandomNewArticle } from '../../src/factories/article.factory';
+import { AddArticleModel } from '../../src/models/articles.model';
+import { ArticlePage } from '../../src/pages/article.page';
+import { ArticlesPage } from '../../src/pages/articles.page';
+import { LoginPage } from '../../src/pages/login.page';
+import { WelcomePage } from '../../src/pages/welcome.page';
+import { testUser1 } from '../../src/test-data/user.data';
+import { AddArticleView } from '../../src/views/add-article.views';
 import { expect, test } from '@playwright/test';
 import * as fs from 'fs'
 
