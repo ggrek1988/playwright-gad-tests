@@ -9,23 +9,19 @@ import { expect, test } from '@playwright/test';
 
 test.describe.configure({ mode: 'serial' });
 test.describe('Create, verify and delete article', () => {
-  let loginPage: LoginPage;
   let articlesPage: ArticlesPage;
   let addArticleView: AddArticleView;
   let articleData: AddArticleModel;
   let articlePage: ArticlePage;
 
   test.beforeEach(async ({ page }) => {
-    loginPage = new LoginPage(page);
     articlesPage = new ArticlesPage(page);
     addArticleView = new AddArticleView(page);
     articlePage = new ArticlePage(page);
 
-    await loginPage.goto();
-    await loginPage.loginNew(testUser1);
     await articlesPage.goto();
   });
-  test('create new articles @GAD-R04-01', async () => {
+  test('create new articles @GAD-R04-01 @logged', async () => {
     // Arrange
     articleData = prepareRandomNewArticle();
 
@@ -41,7 +37,7 @@ test.describe('Create, verify and delete article', () => {
       .toHaveText(articleData.body, { useInnerText: true });
   });
 
-  test('user can access singe article @GAD-R04-03', async () => {
+  test('user can access singe article @GAD-R04-03 @logged', async () => {
     //Act
     await articlesPage.goToArticle(articleData.title);
 
@@ -52,7 +48,7 @@ test.describe('Create, verify and delete article', () => {
       .toHaveText(articleData.body, { useInnerText: true });
   });
 
-  test('user can delete his article @GAD-R04-04', async () => {
+  test('user can delete his article @GAD-R04-04 @logged', async () => {
     //Arrange
     const expectedArticlesTitle = 'Articles';
     const expectedNoDataText = 'No data';

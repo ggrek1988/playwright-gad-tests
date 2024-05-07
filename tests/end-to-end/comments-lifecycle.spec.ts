@@ -12,7 +12,6 @@ import { EditCommentView } from '../../src/views/edit-comment.views';
 import { expect, test } from '@playwright/test';
 
 test.describe('Create, verify and delete comment', () => {
-  let loginPage: LoginPage;
   let articlesPage: ArticlesPage;
   let addArticleView: AddArticleView;
   let articleData: AddArticleModel;
@@ -22,7 +21,6 @@ test.describe('Create, verify and delete comment', () => {
   let editCommentView: EditCommentView;
 
   test.beforeEach(async ({ page }) => {
-    loginPage = new LoginPage(page);
     articlesPage = new ArticlesPage(page);
     addArticleView = new AddArticleView(page);
     articlePage = new ArticlePage(page);
@@ -32,8 +30,6 @@ test.describe('Create, verify and delete comment', () => {
 
     articleData = prepareRandomNewArticle();
 
-    await loginPage.goto();
-    await loginPage.loginNew(testUser1);
     await articlesPage.goto();
     await articlesPage.addArticleButtomLogged.click();
     await addArticleView.createArticle(articleData);
@@ -100,7 +96,7 @@ test.describe('Create, verify and delete comment', () => {
     });
   });
 
-  test('user can add more than one comment @GAD-R05-03', async () => {
+  test('user can add more than one comment @GAD-R05-03 @logged', async () => {
     await test.step('create ferst comment', async () => {
       // Arrange
       const expectedCommentCreatePopup = 'Comment was created';
@@ -115,7 +111,7 @@ test.describe('Create, verify and delete comment', () => {
         expectedCommentCreatePopup,
       );
     });
-    await test.step('create and veryfy second comment', async () => {
+    await test.step('create and veryfy second comment @logged', async () => {
       const secondCommentData = await test.step('create comment', async () => {
         const secondCommentData = prepareRandomComment();
         await articlePage.addCommentButton.click();
