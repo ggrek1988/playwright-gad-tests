@@ -14,7 +14,9 @@
     "test:grep": "npx playwright test --grep \"@GAD-R01-01|@GAD-R01-02\"",
     "test:grep:linux": "npx playwright test --grep \"@GAD-R01-01^|@GAD-R01-02\"",
     "test:grep:powershell": "npx playwright test --grep --% \"@GAD-R01-01^|@GAD-R01-02\"",
-    "test:grep:repeat": "npx playwright test --grep  \"@GAD-R01-01\" --repeat-each=5"
+    "test:grep:repeat": "npx playwright test --grep  \"@GAD-R01-01\" --repeat-each=5",
+    "test:one:TC": "npx playwright test -g 'Create, verify and delete article'",
+    "test:project": "npx playwright test -g 'Create, verify and delete article' --project 'iphone"
   },
   "keywords": [],
   "author": "",
