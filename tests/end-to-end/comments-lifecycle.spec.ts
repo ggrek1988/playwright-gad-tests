@@ -32,7 +32,7 @@ test.describe('Create, verify and delete comment', () => {
     await articlesPage.addArticleButtomLogged.click();
     await addArticleView.createArticle(articleData);
   });
-  test('operate on comment @GAD-R05-01 @GAD-R05-02', async () => {
+  test('operate on comment @GAD-R05-01 @GAD-R05-02 @logged', async () => {
     //Arrange
     const newCommentData = prepareRandomComment();
     const editCommentData = prepareRandomComment();
@@ -56,7 +56,7 @@ test.describe('Create, verify and delete comment', () => {
       );
     });
 
-    await test.step('verify comment', async () => {
+    await test.step('verify comment @logged' , async () => {
       // Arrange
       // Act
       const articleComment = articlePage.getArticleComment(newCommentData.body);
@@ -67,7 +67,7 @@ test.describe('Create, verify and delete comment', () => {
       await expect(commentPage.commentBody).toHaveText(newCommentData.body);
     });
 
-    await test.step('update comment', async () => {
+    await test.step('update comment @logged', async () => {
       // Arrange
       const expectedCommentUpdatePopup = 'Comment was updated';
 
@@ -82,7 +82,7 @@ test.describe('Create, verify and delete comment', () => {
       await expect(commentPage.commentBody).toHaveText(editCommentData.body);
     });
 
-    await test.step('veryfy update comment in article page', async () => {
+    await test.step('veryfy update comment in article page @logged', async () => {
       // Act
       commentPage.returnLink.click();
       const updatedArticleComment = articlePage.getArticleComment(
