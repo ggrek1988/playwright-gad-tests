@@ -1,5 +1,5 @@
-import { MainMenuComponent } from '../components/main-manu.component';
 import { BasePage } from './base.page';
+import { MainMenuComponent } from '@_src/components/main-manu.component';
 import { Page } from '@playwright/test';
 
 export class ArticlesPage extends BasePage {
@@ -18,11 +18,8 @@ export class ArticlesPage extends BasePage {
     await this.page.getByText(title).click();
   }
 
-  
-  async searchArticle(phrase:string):Promise<void>{
-    await this.searchInput.fill(phrase)
-    await this.goSearchButton.click()
+  async searchArticle(phrase: string): Promise<void> {
+    await this.searchInput.fill(phrase);
+    await this.goSearchButton.click();
   }
-
- 
 }

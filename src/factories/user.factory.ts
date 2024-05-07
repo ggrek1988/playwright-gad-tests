@@ -1,4 +1,4 @@
-import { RegisterUserModal } from '../models/user.model';
+import { RegisterUserModal } from '@_src/models/user.model';
 import { faker } from '@faker-js/faker/locale/en';
 
 export function prepareRandomUser(): RegisterUserModal {

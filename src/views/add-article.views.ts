@@ -1,4 +1,4 @@
-import { AddArticleModel } from '../models/articles.model';
+import { AddArticleModel } from '@_src/models/articles.model';
 import { Page } from '@playwright/test';
 
 export class AddArticleView {
