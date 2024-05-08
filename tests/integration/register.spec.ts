@@ -24,8 +24,6 @@ test.describe('Verify register', () => {
     const expectedWelcomeTitle = 'Welcome';
 
     const loginPage = new LoginPage(page);
-    const welcomePage = new WelcomePage(page);
-
     await registerPage.register(registerUserData);
 
     // Assert
@@ -36,7 +34,7 @@ test.describe('Verify register', () => {
     expect(titleLogin).toContain(expectedLoginTitle);
 
     // Assert test login
-    await loginPage.loginNew({
+    const welcomePage = await loginPage.loginNew({
       userEmail: registerUserData.userEmail,
       userPassword: registerUserData.userPassword,
     });

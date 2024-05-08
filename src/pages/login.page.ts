@@ -1,5 +1,6 @@
 import { BasePage } from './base.page';
 import { LoginUserModal } from '@_src/models/user.model';
+import { WelcomePage } from '@_src/pages/welcome.page';
 import { Page } from '@playwright/test';
 
 export class LoginPage extends BasePage {
@@ -16,9 +17,11 @@ export class LoginPage extends BasePage {
   }
 
   // zadeklarowanie w parametrze funckji interfejsów
-  async loginNew(loginUser: LoginUserModal): Promise<void> {
+  async loginNew(loginUser: LoginUserModal): Promise<WelcomePage> {
     await this.userEmailInput.fill(loginUser.userEmail);
     await this.userPasswordInput.fill(loginUser.userPassword);
     await this.LogInButton.click();
+
+    return new WelcomePage(this.page)
   }
 }
