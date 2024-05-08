@@ -8,11 +8,10 @@ test.describe.configure({ mode: 'serial' });
 test.describe('Create, verify and delete article', () => {
   let articlesPage: ArticlesPage;
   let articleData: AddArticleModel;
-  let articlePage: ArticlePage;
 
   test.beforeEach(async ({ page }) => {
     articlesPage = new ArticlesPage(page);
-    articlePage = new ArticlePage(page);
+
 
     await articlesPage.goto();
   });
@@ -23,7 +22,7 @@ test.describe('Create, verify and delete article', () => {
     //Act
     const addArticleView = await articlesPage.clickAddArticleButtomLogged();
     await expect.soft(addArticleView.addNewHeader).toBeVisible();
-    await addArticleView.createArticle(articleData);
+    const articlePage = await addArticleView.createArticle(articleData);
 
     // Assert
     await expect.soft(articlePage.articleTittle).toHaveText(articleData.title);

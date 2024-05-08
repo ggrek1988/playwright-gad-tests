@@ -68,11 +68,10 @@ test.describe('Verify articlesn', () => {
   }) => {
     // Arrange
 
-    const articlePage = new ArticlePage(page);
     const articleData = prepareRandomNewArticle(128);
 
     //Act
-    await addArticleView.createArticle(articleData);
+    const articlePage = await addArticleView.createArticle(articleData);
 
     // Assert
     await expect.soft(articlePage.articleTittle).toHaveText(articleData.title);
