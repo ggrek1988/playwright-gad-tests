@@ -6,8 +6,8 @@ export class BasePage {
     this.page = page;
   }
 
-  async goto(): Promise<void> {
-    await this.page.goto(this.url);
+  async goto(parametrs = ''): Promise<void> {
+    await this.page.goto(`${this.url}${parametrs}`);
   }
 
   async getTitle(): Promise<string> {
