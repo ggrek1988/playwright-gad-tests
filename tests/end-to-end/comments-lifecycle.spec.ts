@@ -56,7 +56,7 @@ test.describe('Create, verify and delete comment', () => {
       );
     });
 
-    await test.step('verify comment @logged' , async () => {
+    await test.step('verify comment @logged', async () => {
       // Arrange
       // Act
       const articleComment = articlePage.getArticleComment(newCommentData.body);

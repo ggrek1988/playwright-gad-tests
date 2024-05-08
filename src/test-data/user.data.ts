@@ -1,4 +1,4 @@
-import { USERS_PASSWORD, USER_EMAIL } from '../../config/env.config';
+import { USERS_PASSWORD, USER_EMAIL } from '@_config/env.config';
 import { LoginUserModal } from '@_src/models/user.model';
 
 export const testUser1: LoginUserModal = {
