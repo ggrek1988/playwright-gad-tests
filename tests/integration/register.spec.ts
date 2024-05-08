@@ -15,16 +15,13 @@ test.describe('Verify register', () => {
     await registerPage.goto();
   });
 
-  test('register with correct data and login @GAD-R03-01 @GAD-R03-02 @GAD-R03-03', async ({
-    page,
-  }) => {
+  test('register with correct data and login @GAD-R03-01 @GAD-R03-02 @GAD-R03-03', async ({}) => {
     // Arrange
     const expectedAlertPopupText = 'User created';
     const expectedLoginTitle = 'Login';
     const expectedWelcomeTitle = 'Welcome';
 
-    const loginPage = new LoginPage(page);
-    await registerPage.register(registerUserData);
+   const loginPage = await registerPage.register(registerUserData);
 
     // Assert
     expect(registerPage.alertPopUp).toHaveText(expectedAlertPopupText);
