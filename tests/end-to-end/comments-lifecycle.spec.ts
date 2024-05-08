@@ -16,14 +16,14 @@ test.describe('Create, verify and delete comment', () => {
 
   test.beforeEach(async ({ page }) => {
     articlesPage = new ArticlesPage(page);
-    addArticleView = new AddArticleView(page);
     articlePage = new ArticlePage(page);
     editCommentView = new EditCommentView(page);
 
     articleData = prepareRandomNewArticle();
 
     await articlesPage.goto();
-    await articlesPage.addArticleButtomLogged.click();
+
+    addArticleView = await articlesPage.clickAddArticleButtomLogged();
     await addArticleView.createArticle(articleData);
   });
   test('operate on comment @GAD-R05-01 @GAD-R05-02 @logged', async () => {
