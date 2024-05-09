@@ -1,25 +1,18 @@
 import { prepareRandomNewArticle } from '@_src/factories/article.factory';
+import { expect, test } from '@_src/fixtures/merge.fixture';
 import { AddArticleModel } from '@_src/models/articles.model';
-import { ArticlesPage } from '@_src/pages/articles.page';
-import { expect, test } from '@playwright/test';
 
 test.describe.configure({ mode: 'serial' });
 test.describe('Create, verify and delete article', () => {
-  let articlesPage: ArticlesPage;
   let articleData: AddArticleModel;
 
-  test.beforeEach(async ({ page }) => {
-    articlesPage = new ArticlesPage(page);
-
-    await articlesPage.goto();
-  });
-  test('create new articles @GAD-R04-01 @logged', async () => {
+  test('create new articles @GAD-R04-01 @logged', async ({
+    addArticleView,
+  }) => {
     // Arrange
     articleData = prepareRandomNewArticle();
 
     //Act
-    const addArticleView = await articlesPage.clickAddArticleButtomLogged();
-    await expect.soft(addArticleView.addNewHeader).toBeVisible();
     const articlePage = await addArticleView.createArticle(articleData);
 
     // Assert
@@ -29,7 +22,9 @@ test.describe('Create, verify and delete article', () => {
       .toHaveText(articleData.body, { useInnerText: true });
   });
 
-  test('user can access singe article @GAD-R04-03 @logged', async () => {
+  test('user can access singe article @GAD-R04-03 @logged', async ({
+    articlesPage,
+  }) => {
     //Act
     const articlePage = await articlesPage.goToArticle(articleData.title);
 
@@ -40,7 +35,9 @@ test.describe('Create, verify and delete article', () => {
       .toHaveText(articleData.body, { useInnerText: true });
   });
 
-  test('user can delete his article @GAD-R04-04 @logged', async () => {
+  test('user can delete his article @GAD-R04-04 @logged', async ({
+    articlesPage,
+  }) => {
     //Arrange
     const expectedArticlesTitle = 'Articles';
     const expectedNoDataText = 'No data';

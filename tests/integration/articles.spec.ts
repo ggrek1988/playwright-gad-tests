@@ -1,21 +1,11 @@
 import { prepareRandomNewArticle } from '@_src/factories/article.factory';
-import { ArticlesPage } from '@_src/pages/articles.page';
-import { AddArticleView } from '@_src/views/add-article.views';
-import { expect, test } from '@playwright/test';
+import { expect, test } from '@_src/fixtures/merge.fixture';
 
 test.describe('Verify articlesn', () => {
-  let articlesPage: ArticlesPage;
-  let addArticleView: AddArticleView;
-  test.beforeEach(async ({ page }) => {
-    articlesPage = new ArticlesPage(page);
 
-    await articlesPage.goto();
-    addArticleView = await articlesPage.clickAddArticleButtomLogged();
-
-    await expect.soft(addArticleView.addNewHeader).toBeVisible();
-  });
-
-  test('rejest creating article without title @GAD-R04-01 @logged', async () => {
+  test('rejest creating article without title @GAD-R04-01 @logged', async ({
+    addArticleView,
+  }) => {
     // Arrange
 
     const expectedErrorMessage = 'Article was not created';
@@ -31,7 +21,9 @@ test.describe('Verify articlesn', () => {
       .toHaveText(expectedErrorMessage);
   });
 
-  test('rejest creating article  without body @GAD-R04-01 @logged', async () => {
+  test('rejest creating article  without body @GAD-R04-01 @logged', async ({
+    addArticleView,
+  }) => {
     // Arrange
 
     const expectedErrorMessage = 'Article was not created';
@@ -47,7 +39,9 @@ test.describe('Verify articlesn', () => {
       .toHaveText(expectedErrorMessage);
   });
 
-  test('rejest creating article without title exceeding 128 signs @GAD-R04-02 @logged', async () => {
+  test('rejest creating article without title exceeding 128 signs @GAD-R04-02 @logged', async ({
+    addArticleView,
+  }) => {
     // Arrange
 
     const expectedErrorMessage = 'Article was not created';
@@ -62,7 +56,9 @@ test.describe('Verify articlesn', () => {
       .toHaveText(expectedErrorMessage);
   });
 
-  test('create article without title with 128 signs @GAD-R04-02 @logged', async ({}) => {
+  test('create article without title with 128 signs @GAD-R04-02 @logged', async ({
+    addArticleView,
+  }) => {
     // Arrange
 
     const articleData = prepareRandomNewArticle(128);
