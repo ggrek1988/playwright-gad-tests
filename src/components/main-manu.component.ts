@@ -10,21 +10,21 @@ export class MainMenuComponent {
   articlesButton = this.page.getByTestId('open-articles');
   homePageLink = this.page.getByRole('link', { name: 'GAD' });
 
-  async clickCommentsButton():Promise<CommentsPage>{
-    await this.commentsButton.click()
+  async clickCommentsButton(): Promise<CommentsPage> {
+    await this.commentsButton.click();
 
-    return new CommentsPage(this.page)
+    return new CommentsPage(this.page);
   }
 
-  async clickArticlesButton():Promise<ArticlesPage>{
-    await this.articlesButton.click()
+  async clickArticlesButton(): Promise<ArticlesPage> {
+    await this.articlesButton.click();
 
-    return new ArticlesPage(this.page)
+    return new ArticlesPage(this.page);
   }
 
-  async clickHomeLink():Promise<HomePage>{
-    await this.homePageLink.click()
+  async clickHomeLink(): Promise<HomePage> {
+    await this.homePageLink.click();
 
-    return new HomePage(this.page)
+    return new HomePage(this.page);
   }
 }

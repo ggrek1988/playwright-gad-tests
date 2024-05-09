@@ -18,19 +18,19 @@ export class ArticlesPage extends BasePage {
 
   async goToArticle(title: string): Promise<ArticlePage> {
     await this.page.getByText(title).click();
-    return new ArticlePage(this.page)
+    return new ArticlePage(this.page);
   }
 
   async searchArticle(phrase: string): Promise<ArticlesPage> {
     await this.searchInput.fill(phrase);
     await this.goSearchButton.click();
 
-    // this dlatego ze zwracamy klase w której znajduje sie metoda, tnz ArticlesPage 
-    return this
+    // this dlatego ze zwracamy klase w której znajduje sie metoda, tnz ArticlesPage
+    return this;
   }
 
-  async clickAddArticleButtomLogged():Promise<AddArticleView>{
-    await this.addArticleButtomLogged.click()
-    return new AddArticleView(this.page)
+  async clickAddArticleButtomLogged(): Promise<AddArticleView> {
+    await this.addArticleButtomLogged.click();
+    return new AddArticleView(this.page);
   }
 }

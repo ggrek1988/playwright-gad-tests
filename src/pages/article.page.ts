@@ -23,15 +23,14 @@ export class ArticlePage extends BasePage {
     super(page);
   }
 
-  async clickAddCommentButton():Promise<AddCommentView>
-  {
+  async clickAddCommentButton(): Promise<AddCommentView> {
     await this.addCommentButton.click();
-    return new AddCommentView(this.page)
+    return new AddCommentView(this.page);
   }
 
   async deleteArticle(): Promise<void> {
     this.page.on('dialog', async (dialog) => {
-      console.log('dialog is on!');
+      // console.log('dialog is on!');
       await dialog.accept();
     });
 
@@ -49,7 +48,9 @@ export class ArticlePage extends BasePage {
     };
   }
 
-  async clickCommentLink(commentContainer: ArticleComment): Promise<CommentPage> {
+  async clickCommentLink(
+    commentContainer: ArticleComment,
+  ): Promise<CommentPage> {
     await commentContainer.link.click();
     return new CommentPage(this.page);
   }

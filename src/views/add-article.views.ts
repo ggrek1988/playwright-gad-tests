@@ -17,6 +17,6 @@ export class AddArticleView {
     await this.bodyInput.fill(addArticle.body);
     await this.saveButton.click();
 
-    return new ArticlePage(this.page)
+    return new ArticlePage(this.page);
   }
 }

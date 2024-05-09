@@ -125,9 +125,11 @@ class MyClass {
 ```
 
 ## Returning Page Objects in Page Object Classes
+
 - When creating methods within page object classes that interact with UI elements and navigate to other pages, these methods should return new page objects representing the navigated pages.
 - The method name should clearly describe the action taken, and the return type should be the page object class for the new page.
-**Examples:**
+  **Examples:**
+
 ```typescript
 class HomePage {
   // ... other elements and methods ...
@@ -144,7 +146,9 @@ class HomePage {
   }
 }
 ```
+
 Page objects methods usage i.e. in tests:
+
 ```typescript
 // ✅ using page object returned by method
 const signInPage = await homePage.clickSignInButton();

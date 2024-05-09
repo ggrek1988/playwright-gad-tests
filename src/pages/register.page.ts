@@ -26,6 +26,6 @@ export class RegisterPage extends BasePage {
     await this.userPasswordInput.fill(registerUser.userPassword);
     await this.registerButton.click();
 
-    return new LoginPage(this.page)
+    return new LoginPage(this.page);
   }
 }

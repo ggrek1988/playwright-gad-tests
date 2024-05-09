@@ -16,13 +16,13 @@ export class CommentPage extends BasePage {
     super(page);
   }
 
-  async clickEditButton():Promise<EditCommentView>{
-    await this.editButton.click()
-    return new EditCommentView(this.page)
+  async clickEditButton(): Promise<EditCommentView> {
+    await this.editButton.click();
+    return new EditCommentView(this.page);
   }
 
-  async clickReturnLink():Promise<ArticlePage>{
-    await this.returnLink.click()
-    return new ArticlePage(this.page)
+  async clickReturnLink(): Promise<ArticlePage> {
+    await this.returnLink.click();
+    return new ArticlePage(this.page);
   }
 }

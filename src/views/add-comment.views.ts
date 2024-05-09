@@ -13,7 +13,7 @@ export class AddCommentView {
   async CreateComment(commentData: AddCommentModel): Promise<ArticlePage> {
     await this.bodyInput.fill(commentData.body);
     await this.saveButton.click();
-    
-    return new ArticlePage(this.page)
+
+    return new ArticlePage(this.page);
   }
 }

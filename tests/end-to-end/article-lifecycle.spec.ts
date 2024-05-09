@@ -1,6 +1,5 @@
 import { prepareRandomNewArticle } from '@_src/factories/article.factory';
 import { AddArticleModel } from '@_src/models/articles.model';
-import { ArticlePage } from '@_src/pages/article.page';
 import { ArticlesPage } from '@_src/pages/articles.page';
 import { expect, test } from '@playwright/test';
 
@@ -11,7 +10,6 @@ test.describe('Create, verify and delete article', () => {
 
   test.beforeEach(async ({ page }) => {
     articlesPage = new ArticlesPage(page);
-
 
     await articlesPage.goto();
   });

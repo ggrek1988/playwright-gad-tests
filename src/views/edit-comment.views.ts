@@ -12,6 +12,6 @@ export class EditCommentView {
     await this.bodyInput.fill(commentData.body);
     await this.updateButton.click();
 
-    return new CommentPage(this.page)
+    return new CommentPage(this.page);
   }
 }

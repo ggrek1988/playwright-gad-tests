@@ -1,5 +1,4 @@
 import { prepareRandomNewArticle } from '@_src/factories/article.factory';
-import { ArticlePage } from '@_src/pages/article.page';
 import { ArticlesPage } from '@_src/pages/articles.page';
 import { AddArticleView } from '@_src/views/add-article.views';
 import { expect, test } from '@playwright/test';
@@ -63,9 +62,7 @@ test.describe('Verify articlesn', () => {
       .toHaveText(expectedErrorMessage);
   });
 
-  test('create article without title with 128 signs @GAD-R04-02 @logged', async ({
-    page,
-  }) => {
+  test('create article without title with 128 signs @GAD-R04-02 @logged', async ({}) => {
     // Arrange
 
     const articleData = prepareRandomNewArticle(128);

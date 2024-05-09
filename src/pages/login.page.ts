@@ -22,6 +22,7 @@ export class LoginPage extends BasePage {
     await this.userPasswordInput.fill(loginUser.userPassword);
     await this.LogInButton.click();
 
-    return new WelcomePage(this.page)
+    // zwracaymy obiekt ponieważ następym oknem po operacji click() bedzie nowy page WelcomePage
+    return new WelcomePage(this.page);
   }
 }

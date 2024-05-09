@@ -1,8 +1,6 @@
 import { prepareRandomUser } from '@_src/factories/user.factory';
 import { RegisterUserModal } from '@_src/models/user.model';
-import { LoginPage } from '@_src/pages/login.page';
 import { RegisterPage } from '@_src/pages/register.page';
-import { WelcomePage } from '@_src/pages/welcome.page';
 import { expect, test } from '@playwright/test';
 
 test.describe('Verify register', () => {
@@ -21,10 +19,10 @@ test.describe('Verify register', () => {
     const expectedLoginTitle = 'Login';
     const expectedWelcomeTitle = 'Welcome';
 
-   const loginPage = await registerPage.register(registerUserData);
+    const loginPage = await registerPage.register(registerUserData);
 
     // Assert
-    expect(registerPage.alertPopUp).toHaveText(expectedAlertPopupText);
+    await expect(registerPage.alertPopUp).toHaveText(expectedAlertPopupText);
 
     await loginPage.waitForPageToLoadUrl();
     const titleLogin = await loginPage.getTitle();
