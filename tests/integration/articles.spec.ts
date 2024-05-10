@@ -86,11 +86,6 @@ test.describe('Verify articlesn', () => {
     const articleData = prepareRandomNewArticle();
     const responsePromise = page.waitForResponse(
       (response) => {
-        console.log(
-          response.request().method(),
-          response.status(),
-          response.url(),
-        );
         return (
           response.url().includes('/api/articles') &&
           response.request().method() == 'GET'
@@ -102,7 +97,7 @@ test.describe('Verify articlesn', () => {
     const articlePage = await addArticleView.createArticle(articleData);
     const response = await responsePromise;
     // Assert
-    expect(response.ok()).toBeTruthy()
+    expect(response.ok()).toBeTruthy();
 
     await expect.soft(articlePage.articleTittle).toHaveText(articleData.title);
   });

@@ -13,16 +13,16 @@ test.describe('Create, verify and delete comment', () => {
     // Act
     await test.step('create new comment', async () => {
       // Arrange
-      const expectedAddCommnetHeader = 'Add New Comment';
+      const expectedAddCommentHeader = 'Add New Comment';
       const expectedCommentCreatePopup = 'Comment was created';
 
       // Act
       // await articlePage.addCommentButton.click();
-      const addCommnetView = await articlePage.clickAddCommentButton();
-      await expect(addCommnetView.addNewHeader).toHaveText(
-        expectedAddCommnetHeader,
+      const addCommentView = await articlePage.clickAddCommentButton();
+      await expect(addCommentView.addNewHeader).toHaveText(
+        expectedAddCommentHeader,
       );
-      articlePage = await addCommnetView.CreateComment(newCommentData);
+      articlePage = await addCommentView.CreateComment(newCommentData);
 
       // Assert
       await expect(articlePage.alertPopup).toHaveText(
