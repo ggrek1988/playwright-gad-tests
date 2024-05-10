@@ -7,7 +7,7 @@ import { Page } from '@playwright/test';
 export class ArticlesPage extends BasePage {
   url = '/articles.html';
   mainMenu = new MainMenuComponent(this.page);
-  addArticleButtomLogged = this.page.locator('#add-new');
+  addArticleButtonLogged = this.page.locator('#add-new');
   searchInput = this.page.getByTestId('search-input');
   goSearchButton = this.page.getByTestId('search-button');
   noResultText = this.page.getByTestId('no-results');
@@ -29,8 +29,8 @@ export class ArticlesPage extends BasePage {
     return this;
   }
 
-  async clickAddArticleButtomLogged(): Promise<AddArticleView> {
-    await this.addArticleButtomLogged.click();
+  async clickAddArticleButtonLogged(): Promise<AddArticleView> {
+    await this.addArticleButtonLogged.click();
     return new AddArticleView(this.page);
   }
 }

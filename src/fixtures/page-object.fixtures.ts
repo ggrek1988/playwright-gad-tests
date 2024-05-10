@@ -25,7 +25,7 @@ export const pageObjectTest = baseTest.extend<Pages>({
     await use(articlesPage);
   },
   addArticleView: async ({ articlesPage }, use) => {
-    const addArticleView = await articlesPage.clickAddArticleButtomLogged();
+    const addArticleView = await articlesPage.clickAddArticleButtonLogged();
     await use(addArticleView);
   },
   articlePage: async ({ page }, use) => {
