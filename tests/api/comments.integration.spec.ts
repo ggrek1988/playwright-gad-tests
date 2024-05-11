@@ -1,35 +1,17 @@
-import { prepareRandomNewArticle } from '@_src/factories/article.factory';
 import { prepareRandomComment } from '@_src/factories/comments.factory';
 import { expect, test } from '@_src/fixtures/merge.fixture';
-import { testUser1 } from '@_src/test-data/user.data';
+import {
+  getAuthorizationHeader,
+  prepareArticlePayload,
+} from '@_src/utils/api.util';
 
 test.describe('Verify comments CRUD operations @crud @GAD-R08-04', () => {
   let articleId: number;
   let headers: { [key: string]: string };
   test.beforeAll('create an article', async ({ request }) => {
-    // Login
-    const loginUrl = '/api/login';
-    const userData = {
-      email: testUser1.userEmail,
-      password: testUser1.userPassword,
-    };
-    const responseLogin = await request.post(loginUrl, {
-      data: userData,
-    });
-    const responseLoginJson = await responseLogin.json();
-    // Create article
+    headers = await getAuthorizationHeader(request);
     const articlesUrl = '/api/articles';
-    const randomArticleData = prepareRandomNewArticle();
-    const articleData = {
-      title: randomArticleData.title,
-      body: randomArticleData.body,
-      date: '2024-01-30T15:44:31Z',
-      image:
-        '.\\data\\images\\256\\tester-app_9f26eff6-2390-4460-8829-81a9cbe21751.jpg',
-    };
-    headers = {
-      Authorization: `Bearer ${responseLoginJson.access_token}`,
-    };
+    const articleData = prepareArticlePayload();
     const responseArticle = await request.post(articlesUrl, {
       headers,
       data: articleData,

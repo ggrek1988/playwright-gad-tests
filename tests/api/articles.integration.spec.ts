@@ -1,6 +1,8 @@
-import { prepareRandomNewArticle } from '@_src/factories/article.factory';
 import { expect, test } from '@_src/fixtures/merge.fixture';
-import { testUser1 } from '@_src/test-data/user.data';
+import {
+  getAuthorizationHeader,
+  prepareArticlePayload,
+} from '@_src/utils/api.util';
 
 test.describe('Verify articles CRUD operations @crud', () => {
   test('should not create an article without a logged-in user', async ({
@@ -9,13 +11,7 @@ test.describe('Verify articles CRUD operations @crud', () => {
     // Arrange
     const expectedStatusCode = 401;
     const articlesUrl = '/api/articles';
-    const randomArticleData = prepareRandomNewArticle();
-    const articleData = {
-      title: randomArticleData.title,
-      body: randomArticleData.body,
-      date: '2024-06-30T15:44:31Z',
-      image: '',
-    };
+    const articleData = prepareArticlePayload();
     // Act
     const response = await request.post(articlesUrl, {
       data: articleData,
@@ -27,29 +23,12 @@ test.describe('Verify articles CRUD operations @crud', () => {
   test('should create an article with logged-in user', async ({ request }) => {
     // Arrange
     const expectedStatusCode = 201;
-    // Login
-    const loginUrl = '/api/login';
-    const userData = {
-      email: testUser1.userEmail,
-      password: testUser1.userPassword,
-    };
-    const responseLogin = await request.post(loginUrl, {
-      data: userData,
-    });
-    const responseLoginJson = await responseLogin.json();
+
+    const headers = await getAuthorizationHeader(request);
     // Act
     const articlesUrl = '/api/articles';
-    const randomArticleData = prepareRandomNewArticle();
-    const articleData = {
-      title: randomArticleData.title,
-      body: randomArticleData.body,
-      date: '2024-01-30T15:44:31Z',
-      image:
-        '.\\data\\images\\256\\tester-app_9f26eff6-2390-4460-8829-81a9cbe21751.jpg',
-    };
-    const headers = {
-      Authorization: `Bearer ${responseLoginJson.access_token}`,
-    };
+    const articleData = prepareArticlePayload();
+
     const responseArticle = await request.post(articlesUrl, {
       headers,
       data: articleData,
