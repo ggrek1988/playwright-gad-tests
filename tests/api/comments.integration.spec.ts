@@ -1,8 +1,9 @@
-import { prepareRandomComment } from '@_src/factories/comments.factory';
 import { expect, test } from '@_src/fixtures/merge.fixture';
 import {
+  apiLinks,
   getAuthorizationHeader,
   prepareArticlePayload,
+  prepareCommentPayload,
 } from '@_src/utils/api.util';
 
 test.describe('Verify comments CRUD operations @crud @GAD-R08-04', () => {
@@ -10,9 +11,9 @@ test.describe('Verify comments CRUD operations @crud @GAD-R08-04', () => {
   let headers: { [key: string]: string };
   test.beforeAll('create an article', async ({ request }) => {
     headers = await getAuthorizationHeader(request);
-    const articlesUrl = '/api/articles';
+
     const articleData = prepareArticlePayload();
-    const responseArticle = await request.post(articlesUrl, {
+    const responseArticle = await request.post(apiLinks.articlesUrl, {
       headers,
       data: articleData,
     });
@@ -24,15 +25,10 @@ test.describe('Verify comments CRUD operations @crud @GAD-R08-04', () => {
   }) => {
     // Arrange
     const expectedStatusCode = 401;
-    const commentsUrl = '/api/comments';
-    const randomCommentData = prepareRandomComment();
-    const commentData = {
-      article_id: articleId,
-      body: randomCommentData.body,
-      date: '2024-01-30T15:44:31Z',
-    };
+
+    const commentData = prepareCommentPayload(articleId);
     // Arrange
-    const response = await request.post(commentsUrl, {
+    const response = await request.post(apiLinks.commentsUrl, {
       data: commentData,
     });
     // Assert
@@ -42,15 +38,10 @@ test.describe('Verify comments CRUD operations @crud @GAD-R08-04', () => {
     // Arrange
     const expectedStatusCode = 201;
     // Act
-    const commentsUrl = '/api/comments';
-    const randomCommentData = prepareRandomComment();
-    const commentData = {
-      article_id: articleId,
-      body: randomCommentData.body,
-      date: '2024-01-30T15:44:31Z',
-    };
+
+    const commentData = prepareCommentPayload(articleId);
     // Arrange
-    const response = await request.post(commentsUrl, {
+    const response = await request.post(apiLinks.commentsUrl, {
       headers,
       data: commentData,
     });
