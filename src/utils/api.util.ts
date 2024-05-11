@@ -8,7 +8,7 @@ export const apiLinks = {
   commentsUrl: '/api/comments',
 };
 
-interface Headers {
+export interface Headers {
   [key: string]: string;
 }
 export async function getAuthorizationHeader(
@@ -28,7 +28,7 @@ export async function getAuthorizationHeader(
   };
 }
 
-interface ArticlePayload {
+export interface ArticlePayload {
   title: string;
   body: string;
   date: string;
@@ -46,7 +46,7 @@ export function prepareArticlePayload(): ArticlePayload {
   return articleData;
 }
 
-interface CommentPayload {
+export interface CommentPayload {
   article_id: number;
   body: string;
   date: string;
