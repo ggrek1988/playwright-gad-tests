@@ -27,8 +27,13 @@ export default defineConfig({
 
   projects: [
     {
-      name: 'chromium_non_logged',
+      name: 'api',
+      testDir: 'tests/api',
+    },
+    {
+      name: 'chromium-non-logged',
       grepInvert: /@logged/,
+      testDir: 'tests/ui',
       use: { ...devices['Desktop Chrome'] },
     },
     {
@@ -44,10 +49,5 @@ export default defineConfig({
         storageState: STORAGE_STATE,
       },
     },
-    // {
-    //   name: 'smoke',
-    //   testDir: '.tests/smoke',
-    //   grep: /@GAD-R05-03/,
-    // },
   ],
 });

@@ -21,7 +21,8 @@ export async function waitForResponse(
       );
       return (
         response.url().includes(waitParams.url) &&
-        (!waitParams.method || response.request().method() == waitParams.method) &&
+        (!waitParams.method ||
+          response.request().method() == waitParams.method) &&
         (!waitParams.status || response.status() == waitParams.status) &&
         (!waitParams.text || (await response.text()).includes(waitParams.text))
       );
