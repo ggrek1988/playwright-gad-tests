@@ -2,7 +2,6 @@ import { prepareRandomComment } from '@_src/factories/comments.factory';
 import { expect, test } from '@_src/fixtures/merge.fixture';
 import { waitForResponse } from '@_src/utils/wait.utils';
 
-
 test.describe('Verify comment', () => {
   test('should return created comment @GAD-R07-06 @logged', async ({
     createRandomArticle,
@@ -14,8 +13,13 @@ test.describe('Verify comment', () => {
     const newCommentData = prepareRandomComment();
     let articlePage = createRandomArticle.articlePage;
     const addCommentView = await articlePage.clickAddCommentButton();
-
-    const responsePromise = waitForResponse(page, '/api/comments', 'GET', 200);
+    const waitParams = {
+      page,
+      url: '/api/comments',
+      method: 'GET',
+      text: newCommentData.body,
+    };
+    const responsePromise = waitForResponse(waitParams);
 
     // Act
     articlePage = await addCommentView.createComment(newCommentData);

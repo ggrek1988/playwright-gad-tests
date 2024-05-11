@@ -1,4 +1,3 @@
-import { RESPONSE_TIMEOUT } from '@_pw-config';
 import { prepareRandomNewArticle } from '@_src/factories/article.factory';
 import { expect, test } from '@_src/fixtures/merge.fixture';
 import { waitForResponse } from '@_src/utils/wait.utils';
@@ -15,7 +14,10 @@ test.describe('Verify articlesn', () => {
     const expectedResponseCode = 422;
     articleData.title = '';
 
-    const responsePromise = waitForResponse(page, '/api/articles');
+    const responsePromise = waitForResponse({
+      page: page,
+      url: '/api/articles',
+    });
     //Act
     await addArticleView.createArticle(articleData);
     const response = await responsePromise;
@@ -67,8 +69,7 @@ test.describe('Verify articlesn', () => {
 
     const articleData = prepareRandomNewArticle(128);
     const expectedStatusCode = 201;
-
-    const responsePromise = waitForResponse(page, '/api/articles');
+    const responsePromise = waitForResponse({ page, url: '/api/articles' });
     //Act
     const articlePage = await addArticleView.createArticle(articleData);
     const response = await responsePromise;
@@ -78,21 +79,21 @@ test.describe('Verify articlesn', () => {
     await expect.soft(articlePage.articleTittle).toHaveText(articleData.title);
   });
 
-  test('should retur created article from API @GAD-R07-04 @logged', async ({
+  test('should return created article from API @GAD-R07-04 @logged', async ({
     addArticleView,
     page,
   }) => {
     // Arrange
     const articleData = prepareRandomNewArticle();
-    const responsePromise = page.waitForResponse(
-      (response) => {
-        return (
-          response.url().includes('/api/articles') &&
-          response.request().method() == 'GET'
-        );
-      },
-      { timeout: RESPONSE_TIMEOUT },
-    );
+
+    const waitParams = {
+      page,
+      url: '/api/articles',
+      method: 'GET',
+      text: articleData.title,
+    };
+    const responsePromise = waitForResponse(waitParams);
+
     //Act
     const articlePage = await addArticleView.createArticle(articleData);
     const response = await responsePromise;
